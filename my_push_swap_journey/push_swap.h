@@ -45,7 +45,7 @@ void	ft_ra(t_stack **stack_a, int flag);
 void	ft_sa(t_stack *stack_a, int flag);
 void	ft_pa(t_stack **stack_a, t_stack_b **stack_b, int flag);
 void	ft_rra(t_stack **stack_a, int flag);
-void	ft_rrb(t_stack_b **stack_a, int flag);
+void	ft_rrb(t_stack_b **stack_b, int flag);
 
 /* b Operation*/
 void		ft_sb(t_stack_b *stack_b, int flag);
@@ -102,10 +102,47 @@ void	ft_insert(t_stack **stack_a, t_stack_b *stack_b);
 
 // List operation
 t_stack	*ft_last_node_a(t_stack *stack_a);
-t_stack	*ft_last_node_a(t_stack *stack_a);
+t_stack_b *ft_last_node_b(t_stack_b *stack_b);
 int	ft_stack_b_min(t_stack_b *stack_b);
 int	ft_stack_b_max(t_stack_b *stack_b);
+int ft_count_node_b(t_stack_b *head);
+int	ft_find_index_a(t_stack *stack_a, int nbr);
+int	ft_stack_a_max(t_stack *stack_a);
+int	ft_find_index_b(t_stack_b *stack_b, int nbr);
+int	ft_stack_a_min(t_stack *stack_a);
+int	ft_stack_a_max(t_stack *stack_a);
 
+// operation rotation
+int	ft_find_place_a(t_stack *stack_a, int number);
+int	ft_find_place_b(t_stack_b *stack_b, int number);
+int	ft_rotate_rra_rrb(t_stack *stack_a, t_stack_b *stack_b, int number);
+int	ft_rotate_rra_rb_a(t_stack *stack_a, t_stack_b *stack_b, int n);
+int	ft_rotate_ra_rrb_a(t_stack *stack_a, t_stack_b *stack_b, int n);
+int	ft_rotate_rra_rrb_a(t_stack *stack_a, t_stack_b *stack_b, int n);
+int	ft_rotate_ra_rb_a(t_stack *stack_a, t_stack_b *stack_b, int n);
+int	ft_rotate_ra_rrb(t_stack *stack_a, t_stack_b *stack_b, int n);
+int	ft_rotate_rra_rb(t_stack *stack_a, t_stack_b *stack_b, int n);
+int	ft_rotate_ra_rb(t_stack *stack_a, t_stack_b *stack_b, int n);
+t_stack **ft_sort_stack_a(t_stack **stack_a, t_stack_b **stack_b);
+t_stack_b *ft_sort_stack_b(t_stack **stack_a);
+int	ft_stack_a_min(t_stack *stack_a);
+void    ft_sort_stack(t_stack **stack_a);
+
+// b and b sorting
+int ft_push_rra_rb(t_stack **stack_a, t_stack_b **stack_b, int c, char s);
+int ft_push_ra_rrb(t_stack **stack_a, t_stack_b **stack_b, int c, char s);
+int ft_push_rra_rrb(t_stack **stack_a, t_stack_b **stack_b, int c, char d);
+int ft_push_ra_rb(t_stack **stack_a, t_stack_b **stack_b, int n, char c);
+
+void    ft_sort_stack_b_three(t_stack **stack_a, t_stack_b **stack_b);
+
+// flexible operation
+int ft_flexible_operation_b_a(t_stack *stack_a, t_stack_b *stack_b);
+int ft_flexible_operation_a_b(t_stack *stack_a, t_stack_b *stack_b);
+
+char	**ft_strjoin(char **argv, int argc);
+void    ft_join_free(char *temp, int k);
+int ft_strln(const char *str);
 
 int ft_get_inter_at_index(t_stack *stack_a, int index);
 

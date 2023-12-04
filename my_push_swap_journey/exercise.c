@@ -61,6 +61,19 @@ int ft_count_node(t_stack *head)
     }
     return i;
 }
+int ft_count_node_b(t_stack_b *head)
+{
+    if(head == NULL)
+        return 0;
+    t_stack_b *node = head;
+    int i = 0;
+    while(node != NULL)
+    { 
+        node = node->link;
+        i++;
+    }
+    return i;
+}
 t_stack* link_test()
 {
     t_stack * node = buildOneTwoThree();

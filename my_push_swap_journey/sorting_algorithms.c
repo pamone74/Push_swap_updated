@@ -150,18 +150,18 @@ int ft_get_index(t_stack **stack, int item)
     return 0;
 }
 
-void	ft_sort_integers(t_stack **stack_a)
-{
-	t_stack_b *stack_b;
-	int			i;
-
-	stack_b = NULL;
-	if (ft_count_node(*stack_a) == 2 && ft_is_sorted(*stack_a))
-		ft_sa(stack_a, 1);
-	else
-	{
-		stack_b = ft_sort_stack_b(stack_a);
-	}
-
-}
+// void	ft_sort_integers(t_stack **stack_a)
+// {
+	// t_stack_b *stack_b;
+	// int			i;
+// 
+	// stack_b = NULL;
+	// if (ft_count_node(*stack_a) == 2 && ft_is_sorted(*stack_a))
+		// ft_sa(stack_a, 1);
+	// else
+	// {
+		// stack_b = ft_sort_stack_b(stack_a);
+	// }
+// 
+// }
 

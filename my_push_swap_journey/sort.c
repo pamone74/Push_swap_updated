@@ -1,73 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pamone <pamone@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/03 20:16:12 by pamone            #+#    #+#             */
+/*   Updated: 2023/12/03 20:16:12 by pamone           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int get_value_at(t_stack *stack, int item)
+void    ft_sort_stack(t_stack **stack_a)
 {
-    t_stack *node = stack;
-    int count = 0;
-    if(node != NULL)
+    t_stack_b *stack_b;
+    int        i;
+
+    // t_stack *tta = *stack_a;
+    // while (tta != NULL)
+    // {
+    //    printf("The stack_a is >> %d <<<\n", tta->data);
+    //    tta = tta->link;
+    // }
+    stack_b = NULL;
+    if (ft_count_node(*stack_a) == 2)
+        ft_sa(*stack_a, 1);
+    else
     {
-        while(node != NULL)
+        stack_b = ft_sort_stack_b(stack_a);
+        t_stack_b *tt = stack_b;
+        while (tt != NULL)
         {
-            if(node->data == item)
-                return count;
-            count ++;
-            node = node->link;
+           printf("The stack_b is in ft_sort_stack  >> %d <<<\n", tt->data);
+           tt = tt->link;
+           
         }
-    }
-    return 0;
-}
-int partition(t_stack **a, int start, int end) {
-    int pivot_index = start + (end - start) / 2;
-    int pivot = get_value_at(*a, pivot_index); // Assuming you have a function to get the value at index
-
-    int s = start;
-    int e = end;
-
-    while (s < e) {
-        while (get_value_at(*a, s) <= pivot && s < pivot_index) {
-            s++;
+        t_stack *tta = *stack_a;
+        stack_a = ft_sort_stack_a(stack_a, &stack_b);
+        while (tta != NULL)
+        {
+           printf("The stack_a is >> %d <<<\n", tta->data);
+           tta = tta->link;
         }
-
-        while (get_value_at(*a, e) > pivot && e > pivot_index) {
-            e--;
+        
+        
+        i = ft_find_index_a(*stack_a, ft_stack_a_min(*stack_a));
+        printf("The value of i is %d ", i);
+        printf("\nThe value of min is %d \n", ft_stack_a_min(*stack_a));
+       //printf("The value of i is %d ", i)
+        if (i < ft_count_node(*stack_a) - i)
+        {
+            while ((*stack_a)->data != ft_stack_a_min(*stack_a))
+                ft_ra(stack_a, 1);
         }
-
-        if (s < e) {
-            while (get_value_at(*a, s) != get_value_at(*a, e)) {
-                ft_ra(a,1);
-            }
-            ft_sa(*a, 1);
-            while (get_value_at(*a, s) != get_value_at(*a, e)) {
-                ft_rra(a,1);
-            }
+        else
+        {
+            while ((*stack_a)->data != ft_stack_a_min(*stack_a))
+                ft_rra(stack_a, 1);
         }
-    }
-
-    return pivot_index;
-}
-
-// Function to perform Quick Sort on the stack
-void quick_sort(t_stack **a, int start, int end) {
-    if (start < end) {
-        int position = partition(a, start, end);
-        quick_sort(a, start, position - 1);
-        quick_sort(a, position + 1, end);
-    }
-}
-
-int main(void)
-{
-    t_stack *stack_a  = NULL;
-    ft_push(&stack_a, 7);
-    ft_push(&stack_a, 2);
-    ft_push(&stack_a, 9);
-    ft_push(&stack_a, 3);
-    ft_push(&stack_a, 9);
-    quick_sort(&stack_a, 0, 4);
-    while (stack_a != NULL)
-    {
-        printf("The element is >>>>>> %d <<<<<<\n", stack_a->data);
-        stack_a = stack_a->link;
+        
+        
     }
     
 }

@@ -57,7 +57,7 @@ void	ft_rb(t_stack_b **stack_b, int flag)
 	tail = get_bottom_b(*stack_b);
 	tail->link = temp;
 	if (flag)
-		ft_putstr("ra");
+		ft_putstr("rb");
 }
 
 void	ft_rr(t_stack **stack_a, t_stack_b **stack_b, int flag)

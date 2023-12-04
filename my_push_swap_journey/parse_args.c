@@ -44,34 +44,21 @@ t_stack	*ft_parse(char *args[], int argc)
 {
 	t_stack		*stack_a;
 	int			i;
-	//char		**str;
-
-	i = 1;
+	char		**str = ft_strjoin(args, argc);
 	stack_a = NULL;
-	if (argc == 2)
-		stack_a = ft_split_parser(args);
-	else
+	while (str[i] != NULL)
 	{
-		// while (args[i] != NULL)
-		// {
-			// if(args[i][0] == '\"')
-				// str = ft_split(args[i], ' ');
-			// i++;
-		// }
-		while (args[i] != NULL)
+		if(ft_check_ascii(str[i]) || ft_check_overflow(ft_atoi(str[i])))
 		{
-			if(ft_check_ascii(args[i]) || ft_check_overflow(ft_atoi(args[i])))
-			{
-				ft_error();
-				//ft_free_str(args);
-				//free(args);
-				//free(args[i]);
-				return 0;
-			}	
-			else
-				ft_build_tail(&stack_a, ft_atoi(args[i]));
-			i++;
-		}
+			ft_error();
+			//ft_free_str(args);
+			//free(args);
+			//free(args[i]);
+			return 0;
+		}	
+		else
+			ft_build_tail(&stack_a, ft_atoi((*ft_split(args[i], ' '))));
+		i++;
 	}
 	return (stack_a);
 }
