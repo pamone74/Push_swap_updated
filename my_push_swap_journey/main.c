@@ -28,6 +28,27 @@ int get_last_element(t_stack *stack_a)
     // t_stack *temp = stack_b;
     // while()
 // }
+int ft_pos_rank_one(t_stack *stack_a, int item)
+{
+    int i = 0;
+    while(stack_a && stack_a->data != item)
+    {
+        stack_a = stack_a->link;
+        i++;
+    }
+    return (i);
+}
+
+int ft_second_last(t_stack *stack_a)
+{
+    int i = 0;
+    while(stack_a && stack_a->data > ft_stack_a_min(stack_a) && stack_a->data != ft_stack_a_max(stack_a))
+    {
+        stack_a = stack_a->link;
+        i++;
+    }
+    return (i);
+}
 int main(int argc, char **argv)
 {
     if(argc > 1)
@@ -53,22 +74,25 @@ int main(int argc, char **argv)
             // ft_sa(stack_a, 1);
         // }
         // 
-    if(ft_count_node(stack_a) > 3 && ft_is_sorted(stack_a))
+    if(ft_count_node(stack_a) > 3 && ft_is_sorted(stack_a) && !ft_duplicate(stack_a))
     {
         int i = 0;
         int size = ft_count_node(stack_a);
         t_stack *temp = stack_a;
+        int max = ft_stack_a_max(stack_a);
+        printf("The Pos Rank one is %d\n", ft_pos_rank_one(temp, ft_stack_a_min(temp)));
+        printf("The Pos Rank two is %d\n", ft_second_last(temp));
         while (temp->link->link!= NULL && i < size)
         {
             if(temp->data > temp->link->data)
             { 
                 ft_sa(temp, 1);
             }
-            if((temp->data < temp->link->data) )
+            if((temp->data < temp->link->data))
                 ft_pb(&temp, &stack_b, 1);
             else
                 {
-                    ///ft_ra(&temp, 1);
+                    ft_ra(&temp, 1);
                     ft_rra(&temp, 1);
                 }
             i++;
@@ -92,13 +116,13 @@ int main(int argc, char **argv)
         ft_pa(&stack_a, &stack_b, 1);
     }  
     
-        while (stack_a != NULL)
-        {
-            printf("The stack A is >>>>> %d <<<<  \n", stack_a->data);
-            stack_a = stack_a->link;
-        }
-        
-        //printf(">>>>>>>>>>>> %d <<<<<<<<<<<<<\n", !ft_is_sorted(stack_a));
+        // while (stack_a != NULL)
+        // {
+            // printf("The stack A is >>>>> %d <<<<  \n", stack_a->data);
+            // stack_a = stack_a->link;
+        // }
+        // 
+       // printf(">>>>>>>>>>>> %d <<<<<<<<<<<<<\n", !ft_is_sorted(stack_a));
 
         //  while (stack_b != NULL)
         // {

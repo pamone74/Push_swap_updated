@@ -140,7 +140,7 @@ void    ft_sort_stack_b_three(t_stack **stack_a, t_stack_b **stack_b);
 int ft_flexible_operation_b_a(t_stack *stack_a, t_stack_b *stack_b);
 int ft_flexible_operation_a_b(t_stack *stack_a, t_stack_b *stack_b);
 
-char	**ft_strjoin(char **argv, int argc);
+char *ft_strjoin(char *arg[], int argc);
 void    ft_join_free(char *temp, int k);
 int ft_strln(const char *str);
 

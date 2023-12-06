@@ -44,10 +44,13 @@ t_stack	*ft_parse(char *args[], int argc)
 {
 	t_stack		*stack_a;
 	int			i;
-	char		**str = ft_strjoin(args, argc);
+	char		*nor = ft_strjoin(args, argc);
+	printf("The nor here is %s\n", nor);
+	char		**str = ft_split(nor, ' ');		
 	stack_a = NULL;
 	while (str[i] != NULL)
 	{
+
 		if(ft_check_ascii(str[i]) || ft_check_overflow(ft_atoi(str[i])))
 		{
 			ft_error();
@@ -57,7 +60,7 @@ t_stack	*ft_parse(char *args[], int argc)
 			return 0;
 		}	
 		else
-			ft_build_tail(&stack_a, ft_atoi((*ft_split(args[i], ' '))));
+			ft_build_tail(&stack_a, ft_atoi((*ft_split(str[i], ' '))));
 		i++;
 	}
 	return (stack_a);
