@@ -54,12 +54,23 @@ void	ft_ra(t_stack **stack_a, int flag)
 
 void	ft_rra(t_stack **stack_a, int flag)
 {
-	ft_ra(stack_a, flag);
-	ft_ra(stack_a, flag);
+	int len = ft_count_node(*stack_a);
+	while (--len)
+	{
+		ft_ra(stack_a, 0);
+	}
+	if(flag)
+		ft_putstr("rra");
+
 }
 
-void	ft_rrb(t_stack_b **stack_b, int flag)
+void	ft_rrb(t_stack_b **stack_a, int flag)
 {
-	ft_rb(stack_b, flag);
-	ft_rb(stack_b, flag);
+	int len = ft_count_node_b(*stack_a);
+	while (--len)
+	{
+		ft_rb(stack_a, 0);
+	}
+	if(flag)
+		ft_putstr("rrb");
 }

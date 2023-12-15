@@ -91,6 +91,7 @@ void ft_push(t_stack **head, int data)
     if(!new_node)
         return;
     new_node->data = data;
+    new_node->index = -1;
     new_node->link = *head;
     *head = new_node;
 }
@@ -148,13 +149,13 @@ t_stack * copyList(t_stack *head)
     return newList;
 }
 
-t_stack *CopyListRec(t_stack *head)
+t_stack *CopyListRec(const t_stack *head)
 {
     if(head == NULL)
         return NULL;
     else
     {
-        t_stack *current = head;
+        const t_stack *current = head;
         t_stack *newList = (t_stack *)malloc(sizeof(t_stack));
         if(!newList)
             return NULL;
@@ -202,6 +203,26 @@ void ft_insert_at_index(t_stack **stack_a, int index, int item)
 int ft_get_inter_at_index(t_stack *stack_a, int index)
 {
     t_stack *temp_node;
+    int i;
+
+    i = 0;
+    temp_node = stack_a;
+    if(stack_a == NULL)
+        return (0);
+    while(temp_node != NULL)
+    {
+        if(i == index)
+            return (temp_node->data);
+        temp_node = temp_node->link;
+        i++;
+    }
+    return (0);
+    
+}
+
+int ft_get_inter_at_index_b(t_stack_b *stack_a, int index)
+{
+    t_stack_b *temp_node;
     int i;
 
     i = 0;

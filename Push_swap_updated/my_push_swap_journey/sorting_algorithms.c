@@ -23,6 +23,17 @@ int	ft_is_sorted(t_stack *stack_a)
 	return (0);
 }
 
+int	ft_is_sorted_b(t_stack_b *stack_b)
+{
+	while (stack_b->link != NULL)
+	{
+		if (stack_b->data < stack_b->link->data)
+			return (0);
+		stack_b = stack_b->link;
+	}
+	return (1);
+}
+
 void	ft_sort_three(t_stack **stack_a)
 {
 	int	top;
@@ -32,6 +43,8 @@ void	ft_sort_three(t_stack **stack_a)
 	top = (*stack_a)->data;
 	middle = (*stack_a)->link->data;
 	last = (*stack_a)->link->link->data;
+	if(ft_is_sorted(*stack_a))
+	{
 	if (top < middle && last > top)
 	{
 		ft_sa(*stack_a, 1);
@@ -48,7 +61,63 @@ void	ft_sort_three(t_stack **stack_a)
 		ft_sa(*stack_a, 1);
 	else if (top < middle && middle > last)
 		ft_rra(stack_a, 1);
+	}
 }
+void ft_sort_three_b(t_stack_b **stack_a)
+{
+	printf("I am here\n");
+	ft_displa_b(*stack_a);
+    int top;
+    int middle;
+    int last;
+
+    top = (*stack_a)->data;
+    middle = (*stack_a)->link->data;
+    last = (*stack_a)->link->link->data;
+if(!ft_is_sorted_b(*stack_a))
+{
+    // if (top > middle && last < top)
+    // {
+        // ft_sb(*stack_a, 1);
+        // ft_rrb(stack_a, 1);
+    // }
+    // else if (top < middle && middle < last)
+    // {
+        // ft_rb(stack_a, 1);
+        // ft_sb(*stack_a, 1);
+    // }
+    // else if (top < middle && top < last)
+        // ft_rb(stack_a, 1);
+    // else if (top > last && middle > last)
+        // ft_sb(*stack_a, 1);
+    // else if (top > middle && middle < last)
+        // ft_rb(stack_a, 1);
+if (top < middle && last > middle)
+{
+	ft_rb(stack_a, 1);
+	ft_sb(*stack_a, 1);
+	
+}
+// else if (top > middle && middle > last)
+// {
+	// ft_rb(stack_a, 1);
+	// ft_sb(*stack_a, 1);
+// }
+else if (top > middle && top > last)
+{
+		ft_rrb(stack_a, 1);
+		ft_sb(*stack_a,1);
+
+}
+else if (top > middle && middle < last)
+	ft_rrb(stack_a, 1);
+else if (top < middle && top < last)
+	ft_rb(stack_a, 1);
+else if (top < middle && top > last)
+	ft_sb(*stack_a, 1);
+}
+}
+
 
 int get_min(t_stack_b **stack)
 {

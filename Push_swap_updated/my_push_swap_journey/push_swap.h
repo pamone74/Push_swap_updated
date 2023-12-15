@@ -32,7 +32,15 @@ typedef struct s_stack_b
    struct s_stack_b *link;
 }               t_stack_b;
 
-
+t_stack	*ft_stack_end(t_stack *head);
+void	ft_stack_append(t_stack **stack, t_stack *new);
+void selectionSort(t_stack* head_ref);
+int	ft_get_median(const t_stack *stack_a);
+int	ft_is_sorted_b(t_stack_b *stack_b);
+void ft_sort_three_b(t_stack_b **stack_a);
+t_stack *CopyListRec(const t_stack *head);
+void ft_selection_sort_b(t_stack_b* head_ref);
+int	ft_get_median_b(t_stack_b *stack_b);
 
 /* The push_swap_utils.c */
 void	ft_putstr(char *str);
@@ -99,7 +107,7 @@ void	ft_sort_five(t_stack **stack_a);
 void ft_insert_at_index(t_stack **stack_a, int index, int item);
 void	ft_insert(t_stack **stack_a, t_stack_b *stack_b);
 
-
+int ft_get_inter_at_index_b(t_stack_b *stack_a, int index);
 // List operation
 t_stack	*ft_last_node_a(t_stack *stack_a);
 t_stack_b *ft_last_node_b(t_stack_b *stack_b);
@@ -160,7 +168,7 @@ void ft_build_tail(t_stack **headref, int data);
 t_stack * ft_append_node_a(t_stack **headref, t_stack *ref);
 void build_tail_localRef(int data);
 t_stack * copyList(t_stack *head);
-t_stack *CopyListRec(t_stack *head);
+//t_stack *CopyListRec(t_stack *head);
 t_stack *three(void);
 void ft_push(t_stack **head, int data);
 #endif

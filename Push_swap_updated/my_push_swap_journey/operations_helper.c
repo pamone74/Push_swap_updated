@@ -41,8 +41,9 @@ int	ft_pop_a(t_stack **headref)
 	return (temp);
 }
 
-t_stack	*get_bottom_a(t_stack *stack_a)
+t_stack	*get_bottom_a(t_stack *temp)
 {
+	t_stack *stack_a = temp;
 	while (stack_a->link != NULL)
 	{
 		stack_a = stack_a->link;

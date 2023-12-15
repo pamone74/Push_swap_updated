@@ -69,49 +69,50 @@ int ft_fnd(t_stack *stack, int index)
     }
     return stack->data;
 }
-void    ft_quicky(t_stack **stack_a)
-{
-    t_stack *temp = *stack_a;
-    t_stack_b *stack_b = NULL;
-    int pivot = temp->data;
-    int i = 0;
-    int start =  0;
-    int end  = ft_count_node(temp);
-    while (start < end)
-    {
-        while (ft_fnd(temp, start++) <= pivot)
-            ft_pb(&temp, &stack_b, 1);
-        while (ft_fnd(stack_a, end--) > pivot)
-        {
-            ft_rra(&temp, 1);
-            ft_pb(&temp,&stack_b,1);
-        }
-        if(start < end)
-        {
-            if(ft_count_node(temp) > 2)
-                ft_rra(temp, 1);
-            else
-                ft_sa(temp, 1);
-        }
-    while (stack_b->link != NULL)
-    {
-        if(stack_b->data != pivot)
-        {
-            ft_pa(&temp, &stack_b, 1);
-            ft_ra(&temp, 1);
-        }
-        else
-             ft_pa(&temp, &stack_b, 1);
-    }
-        if(stack_b->data != pivot)
-        {
-            ft_pa(&temp, &stack_b, 1);
-            ft_ra(&temp, 1);
-        }
-        else
-            ft_pa(&temp, &stack_b, 1);
-        
-    }
-    
-    
-    }
+// void    ft_quicky(t_stack **stack_a)
+// {
+    // t_stack *temp = *stack_a;
+    // t_stack_b *stack_b = NULL;
+    // int pivot = temp->data;
+    // int i = 0;
+    // int start =  0;
+    // int end  = ft_count_node(temp);
+    // while (start < end)
+    // {
+        // while (ft_fnd(temp, start++) <= pivot)
+            // ft_pb(&temp, &stack_b, 1);
+        // while (ft_fnd(stack_a, end--) > pivot)
+        // {
+            // ft_rra(&temp, 1);
+            // ft_pb(&temp,&stack_b,1);
+        // }
+        // if(start < end)
+        // {
+            // if(ft_count_node(temp) > 2)
+                // ft_rra(temp, 1);
+            // else
+                // ft_sa(temp, 1);
+        // }
+    // while (stack_b->link != NULL)
+    // {
+        // if(stack_b->data != pivot)
+        // {
+            // ft_pa(&temp, &stack_b, 1);
+            // ft_ra(&temp, 1);
+        // }
+        // else
+            //  ft_pa(&temp, &stack_b, 1);
+    // }
+        // if(stack_b->data != pivot)
+        // {
+            // ft_pa(&temp, &stack_b, 1);
+            // ft_ra(&temp, 1);
+        // }
+        // else
+            // ft_pa(&temp, &stack_b, 1);
+        // 
+    // }
+    // 
+    // 
+// }
+// 
