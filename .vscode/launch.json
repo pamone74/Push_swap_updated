@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/workspaces/Push_swap_updated/my_push_swap_journey",
-      "program": "/workspaces/Push_swap_updated/my_push_swap_journey/build/Debug/outDebug",
+      "cwd": "/workspaces/Push_swap_updated/Push_swap_updated/my_push_swap_journey",
+      "program": "/workspaces/Push_swap_updated/Push_swap_updated/my_push_swap_journey/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

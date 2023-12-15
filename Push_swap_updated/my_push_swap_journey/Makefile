@@ -16,7 +16,7 @@ CC		= 	cc
 SRC		=	operation_a.c operations_helper.c push_swap.c push_swap_utils.c \
 			b_operation.c operations_helper_one.c parse_args.c split_operation.c \
 			sorting_algorithms.c main.c list_operation.c operation_rotation.c \
-			sort_a_b.c sort.c ft_str_join.c
+			sort_a_b.c sort.c ft_str_join.c ft_radix.c
 
 
 OBJ = $(SRC:.c=.o)

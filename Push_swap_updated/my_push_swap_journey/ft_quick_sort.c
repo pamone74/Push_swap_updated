@@ -6,136 +6,274 @@
 /*   By: pamone <pamone@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 04:00:18 by pamone            #+#    #+#             */
-/*   Updated: 2023/12/07 02:59:50 by pamone           ###   ########.fr       */
+/*   Updated: 2023/12/15 17:03:22 by pamone           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_sort.h"
 void ft_from_b_to_a(t_stack_b **stak_b, t_stack **stack_a);
+//int    ft_sort_fiv(t_stack **stack_a, int len, t_stack_b **stack_b);
+int ft_quick_sort_b(t_stack **stack_a, t_stack_b **stack_b, int len);
+void ft_push_sort_three(t_stack_b **stack_b, t_stack **stack_a, int len);
+int ft_is_less_b(t_stack_b *stack_a, int median);
+int ft_is_less(t_stack *stack_a, int median);
 t_stack *getTail(t_stack *cur)
 {
     while (cur != NULL && cur->link != NULL)
         cur = cur->link;
     return cur;
 }
-t_stack*partition(t_stack *head, t_stack *end, t_stack**newHead, t_stack **newEnd)
-{
-    t_stack *pivot = end;
-    t_stack *prev = NULL, *cur = head, *tail = pivot;
-    while(cur != pivot) {
-        if(cur->data < pivot->data) {
-            if((*newHead) == NULL)
-                (*newHead) = cur;
-            prev = cur;
-            cur = cur->link;
-        }
-        else {
-            if(prev)
-                prev->link = cur->link;
-            t_stack *tmp = cur->link;
-            cur->link = NULL;
-            tail->link = cur;
-            tail = cur;
-            cur = tmp;
-        }
-    }
-    if((*newHead) == NULL)
-        (*newHead) = pivot;
-    (*newEnd) = tail;
-    return pivot;
-}
-
 //  here the sorting happens exclusive of the end node
-t_stack *quickSortRecur(t_stack *head, t_stack *end)
+// int    ft_sort_a(t_stack **stack_a, t_stack_b **stack, int len)
+// {
+    // int median;
+    // int num_ls;
+    // int pushed = 0;
+    // num_ls = len;
+    // median = ft_get_median(*stack_a);
+    // if(!ft_is_sorted(*stack_a))
+    // {
+        // if(ft_count_node(*stack_a) <= 3)
+        // {
+            // if(ft_count_node(*stack_a)== 2 && (*stack_a)->data > (*stack_a)->link->data )
+                // ft_sa(*stack_a, 1);
+            // else
+                // ft_sort_three(stack_a);
+            // return 0;
+        // }
+            //  while (len != num_ls / 2 + num_ls % 2)
+            //  {
+                //  if((*stack_a)->data < median && len --)
+                    //  ft_pb(stack_a, &stack, 1);
+                // else if(ft_is_less(stack_a, median))
+                // {
+                    //    ft_ra(stack_a, 1);
+                // pushed ++;
+                // }
+                // else 
+                    // break;
+                // }    
+            // while (num_ls / 2 + num_ls % 2 != ft_count_node_b(stack) && pushed --)
+            // {    
+                    //  ft_rra(stack_a, 1);
+            // }
+            // ft_sort_a(stack_a, stack, num_ls / 2 + num_ls % 2);
+        // }
+        // return 1;
+// }
+// void    ft_sort_b(t_stack **stack_a, t_stack_b **stack_b, int len)
+// {
+    // int median;
+    // int num_ls;
+    // int pushed = 0;
+    // num_ls = len;
+    // median =  ft_get_median_b(*stack_b);
+    // if(ft_is_sorted_b(*stack_b))
+    // {
+        // while(len--)
+            // ft_pa(stack_a, stack_b, 1);
+    // }
+    // if(len <= 3){
+        // ft_push_sort_three(stack_b, stack_a, len);
+        // return;
+    // }
+    // while(len != num_ls / 2)
+    // {
+        // if((*stack_b)->data >= median && len --)
+            // ft_pa(stack_a, stack_b, 1);
+        // else if(ft_is_less_b(*stack_b, median))
+        // {
+            // ft_rb(stack_b, 1);
+        // }
+        // else
+            // break;
+    // }
+    // while(num_ls / 2 != ft_count_node_b(stack_b) && pushed --)
+        // ft_rrb(stack_b, 1);
+    // ft_sort_b(stack_a, stack_b, num_ls / 2);
+    // 
+// }
+// void ft_quick_sort(t_stack **stack_a, t_stack_b **stack_b, int len)
+// {
+    // if (!ft_is_sorted(*stack_a))
+    // {
+        // ft_sort_a(stack_a, stack_b, len);
+        // ft_sort_b(stack_a, stack_b, len);
+    // }
+// }
+// 
+int ft_sort_a(t_stack **stack_a, t_stack_b **stack_b, int len)
 {
-    if (!head || head == end)
-        return head;
-    t_stack *newHead = NULL, *newEnd = NULL;
-    t_stack *pivot = partition(head, end, &newHead, &newEnd);
-    if (newHead != pivot) {
-        t_stack *tmp = newHead;
-        while (tmp->link != pivot)
-            tmp = tmp->link;
-        tmp->link = NULL;
-        newHead = quickSortRecur(newHead, tmp);
-        tmp = getTail(newHead);
-        tmp->link = pivot;
+    int median;
+    int num_ls;
+    int pushed = 0;
+    num_ls = len;
+    if (ft_is_sorted(*stack_a))
+    {
+        if (ft_count_node(*stack_a) <= 3)
+        {
+            if (ft_count_node(*stack_a) == 2 && (*stack_a)->data > (*stack_a)->link->data)
+                ft_sa(*stack_a, 1);
+            else
+                ft_sort_three(stack_a);
+            return 0;
+        }
+
+        median = ft_get_median(*stack_a);
+
+        while (len != num_ls / 2 + num_ls % 2)
+        {
+            printf("I am here and the median == %d\n and the top == %d \n", median, (*stack_a)->data);
+            if(!ft_is_less(*stack_a, median))
+                break;
+            else if ((*stack_a)->data < median && len--)
+                ft_pb(stack_a, stack_b, 1);
+            else if ( ++pushed)
+                ft_ra(stack_a, 1);
+        }
+
+        while (num_ls / 2 + num_ls % 2 != ft_count_node_b(*stack_b) && pushed--)
+        {
+            ft_rra(stack_a, 1);
+        }
+
+        ft_sort_a(stack_a, stack_b, num_ls / 2  + num_ls % 2);
     }
-    pivot->link = quickSortRecur(pivot->link, newEnd);
-    return newHead;
-}
-void quickSort(t_stack **headRef)
-{
-    (*headRef) = quickSortRecur(*headRef, getTail(*headRef));
-    return;
+
+    return 1;
 }
 
-void    ft_sort_five_many(t_stack **stack_a)
+void ft_sort_b(t_stack **stack_a, t_stack_b **stack_b, int len)
 {
-    int rank_one;
-    int rank_two;
-    t_stack *temp_a;
-    t_stack_b *stack_b;
-    
-    stack_b = NULL;
-    temp_a = *stack_a;
-    int dis_rank_one;
-    int dis_rank_two;
-    int i = 0;
-    while(temp_a->link->link != NULL)
+    int median;
+    int num_ls;
+    int pushed = 0;
+    num_ls = len;
+
+    if (ft_is_sorted_b(*stack_b))
     {
-        rank_one = ft_stack_a_min(temp_a);
-        rank_two = ft_second_last(temp_a);
-        dis_rank_one = ft_pos_rank_one(temp_a, rank_one);
-        dis_rank_two = ft_pos_rank_one(temp_a, rank_two);
-        // printf("The iteration is [%d]\nRank 01 >> %d << The pos is (%d)\nRank 02 >> %d << The pos is (%d)\n", i, rank_one, dis_rank_one, rank_two, dis_rank_two);
-        // printf("The top data is >>> %d <<<< and is === rankone? %d === rank2? %d\n", temp_a->data, 
-        // temp_a->data == rank_one, temp_a->data == rank_two);
-         //ft_display(temp_a);
-        if(temp_a->data == rank_one || temp_a->data == rank_two)
-            ft_pb(&temp_a, &stack_b, 1);
-        else if(dis_rank_two < dis_rank_one || dis_rank_two > dis_rank_one)
-            ft_ra(&temp_a, 1);
-        else
-            ft_rra(&temp_a, 1);
-        //temp_a =  temp_a->link; 
-        i++;
+        while (len--)
+            ft_pa(stack_a, stack_b, 1);
     }
-    if(temp_a->data < temp_a->link->data)
-        ft_pb(&temp_a, &stack_b, 1);
-    else
+
+    if (len <= 3)
     {
-        ft_sa(temp_a, 1);
-        ft_pb(&temp_a, &stack_b, 1);
+        ft_push_sort_three(stack_b, stack_a, len);
+        return;
     }
-    
-    //ft_display(stack_b);
-        
-    *stack_a = temp_a;
-    ft_from_b_to_a(&stack_b, stack_a);
-   // ft_display(*stack_a);
-}
-void ft_from_b_to_a(t_stack_b **stak_b, t_stack **stack_a)
-{
-    if(stak_b != NULL)
+
+    median = ft_get_median_b(*stack_b);
+
+    while (len != num_ls / 2)
     {
-        //ft_displa_b(*stak_b);
-        while ((*stak_b)->link != NULL)
+        if ((*stack_b)->data >= median && len--)
+            ft_pa(stack_a, stack_b, 1);
+        else if (ft_is_less_b(*stack_b, median))
         {
-            int max = ft_stack_b_max(*stak_b);
-            if((*stak_b)->data == max)
-                ft_pa(stack_a, stak_b, 1);
-            else
-                ft_sb(*stak_b, 1);
+            ft_rb(stack_b, 1);
         }
-        ft_pa(stack_a,stak_b, 1);
+        else
+            break;
+    }
+
+    while (num_ls / 2 != ft_count_node_b(*stack_b) && pushed--)
+        ft_rrb(stack_b, 1);
+
+    ft_sort_b(stack_a, stack_b,  num_ls / 2);
+}
+
+void ft_quick_sort(t_stack **stack_a, t_stack_b **stack_b)
+{
+    if (ft_is_sorted(*stack_a))
+    {
+        ft_sort_a(stack_a, stack_b, ft_count_node(*stack_a));
+        ft_sort_b(stack_a, stack_b, ft_count_node_b(*stack_b));
+    }
+}
+
+int ft_is_less(t_stack *stack_a, int median)
+{
+    t_stack *temp;
+    
+    temp = stack_a;
+    while(temp != NULL)
+    {
+        if(temp->data >= median)
+            return (0);
+        temp = temp->link;
+    }
+    return (1);
+}
+
+int ft_is_less_b(t_stack_b *stack_a, int median)
+{
+    t_stack_b *temp;
+    
+    temp = stack_a;
+    while(temp != NULL)
+    {
+        if(temp->data <= median)
+            return (0);
+        temp = temp->link;
+    }
+    return (1);
+}
+void ft_push_sort_three(t_stack_b **stack_b, t_stack **stack_a, int len)
+{
+    if(len == 1)
+        ft_pa(stack_a, stack_b, 1);
+    else if(len == 2)
+        if((*stack_b)->data < (*stack_b)->link->data)
+            ft_sb(*stack_b, 1);
+    else
+        ft_sort_three_b(stack_b);
+}
+void ft_from_b_to_a(t_stack_b **stack_b, t_stack **stack_a)
+{
+    if(stack_b)
+    {
+        int count = 0;
+        
+        while ((*stack_b)->link != NULL)
+        {
+            int max = ft_stack_b_max(*stack_b);
+            if((*stack_b)->data == max)
+                ft_pa(stack_a, stack_b, 1);
+            else if(++count)
+                ft_sb(*stack_b, 1);
+        }
+        ft_pa(stack_a,stack_b, 1);
         
     }
 }
-// void    ft_crazy_sort(t_stack **stack_a, int Num, int begin, int  end, int loc)
-// {
-    // int start = 
-// }
+void    ft_cc_sort(t_stack **stack_a)
+{
+    if(ft_is_sorted(*stack_a)){
+        int largest;
+        t_stack_b *stack_b = NULL;
+        int next_element;
+        int len ;
+        int num ;
+        while((*stack_a)->link->link != NULL)
+        {
+            if((*stack_a)->data == ft_stack_a_min(*stack_a) || (*stack_a)->data == ft_second_last(*stack_a))
+                ft_pb(stack_a, &stack_b, 1);
+            else if(ft_pos_rank_one(*stack_a, ft_stack_a_min(*stack_a) ) < ft_count_node(*stack_a)/2 || ft_pos_rank_one(*stack_a, ft_second_last(*stack_a) ) < ft_count_node(*stack_a)/2)
+                ft_ra(stack_a, 1);
+            else
+                ft_rra(stack_a,1);
+        }
+        if(ft_count_node(*stack_a) <= 3)
+        {
+            if(ft_count_node(*stack_a)  == 2 && (*stack_a)->data > (*stack_a)->link->data)
+                ft_sa(*stack_a, 1);
+            else
+                ft_sort_three(stack_a);
+        }
+         ft_from_b_to_a(&stack_b, stack_a);
+    }
+}
 int main(int ac, char *argv[])
 {
     if(ac > 1)
@@ -145,10 +283,9 @@ int main(int ac, char *argv[])
         stack_a = NULL;
         stack_b = NULL;
         stack_a = ft_parse(argv, ac);
-        //printf("The stack is not NULL %d  %d\n", stack_a == NULL, stack_a->data);
-        ft_sort_five_many(&stack_a);
-
-        
+        radix_sort(&stack_a, &stack_b);
+        printf("Is sorted %d\n", ft_is_sorted(stack_a));
+        ft_display(stack_a);
     }
 
     
